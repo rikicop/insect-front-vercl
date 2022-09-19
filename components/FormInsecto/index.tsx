@@ -15,20 +15,18 @@ interface Props{
 }
 
 const FormInsecto = () => {
-    /* const [selectedFile, setSelectedFile] = useState();
-    const [isSelected, setIsSelected] = useState(false);
-    const changeHandler = (event:any) => {
-        setSelectedFile(event.target.files[0]);
-        setIsSelected(true);
-    }; */
+
+
     const {register, handleSubmit, formState:{errors}} = useForm<IFormInput>()
     /* Supuestamente el async/await no es necesario si uso then */
     /* Verifica cuando termines */
     const onSubmit: SubmitHandler<IFormInput> = async(data) => { 
-       
-       await fetch('https://insectos-api-vercel.vercel.app/insect',{
+       const formData = new FormData()
+       formData.append('name', data.name)
+       formData.append('image', data.image[0]);
+       const res = await fetch('https://insectos-api-vercel.vercel.app/insect',{
         method: 'POST',
-        body: JSON.stringify(data),
+        body: formData,
        }).then(() => { console.log(data) })
        .catch((err) => { console.log(err) })
      }
