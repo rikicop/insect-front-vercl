@@ -27,8 +27,13 @@ const FormInsecto = () => {
        const res = await fetch('https://insectos-api-vercel.vercel.app/insect',{
         method: 'POST',
         body: formData,
-       }).then(() => { console.log(data) })
-       .catch((err) => { console.log(err) })
+       }) .then((response) => response.json())
+            .then((result) => {
+                console.log('Success:', result);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
      }
   return (
     <Body>
