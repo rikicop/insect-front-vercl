@@ -41,7 +41,7 @@ const FormInsecto = (props:any) => {
   return (
     <Body>
         <div className='container'>
-            <div className='title'>Registro de Muestra</div>
+            <div className='title'>Imserte Muestra</div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="user-details">
 
