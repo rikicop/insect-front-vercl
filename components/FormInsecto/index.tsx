@@ -38,7 +38,7 @@ const FormInsecto = () => {
   return (
     <Body>
         <div className='container'>
-            <div className='title'>Imserte Muestra</div>
+            <div className='title'>Hello</div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="user-details">
 
