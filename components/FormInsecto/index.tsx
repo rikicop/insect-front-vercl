@@ -14,17 +14,20 @@ interface Props{
     muestra: Muestra;
 }
 
-const FormInsecto = () => {
-
+const FormInsecto = (props:any) => {
+    const [v, setV] = useState<undefined | any >([])
+    let hello = Array.from(v).map((file:any) => file.name )
+    console.log("Hello: ", hello)
 
     const {register, handleSubmit, formState:{errors}} = useForm<IFormInput>()
     /* Supuestamente el async/await no es necesario si uso then */
     /* Verifica cuando termines */
     const onSubmit: SubmitHandler<IFormInput> = async(data) => { 
+       
        const formData = new FormData()
        formData.append('name', data.name)
        formData.append('image', data.image[0]);
-       const res = await fetch('https://insectos-api-vercel.vercel.app/insect',{
+        await fetch('https://insectos-api-vercel.vercel.app/insect',{
         method: 'POST',
         body: formData,
        }) .then((response) => response.json())
@@ -53,8 +56,9 @@ const FormInsecto = () => {
                     </div>
                     <div className="input-box-file">
                         <span className="details">Imagen</span> 
-                        <label htmlFor="file-upload" className="custom-file-upload" >
-                          <FaUpload /> Subir Imagen
+                        <label htmlFor="file-upload" className="custom-file-upload">
+                          <FaUpload /> Subir Imagen 
+                          <p style={{color:"darkturquoise" , fontWeight: 'bold'}}>{hello[0]?.toUpperCase()}</p>
                         </label>
                         <input 
                             {...register("image",{required:true} )} 
@@ -62,6 +66,7 @@ const FormInsecto = () => {
                             type="file" 
                             name="image"  
                             style={{display:"none" }}
+                            onChange={(e:any)=>{setV(e.target.files)}}
                         />
                         {/* <input 
                             {...register("image",{required:true} )} 
