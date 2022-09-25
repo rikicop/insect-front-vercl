@@ -14,10 +14,10 @@ interface Props{
     muestra: Muestra;
 }
 
-const FormInsecto = (props:any) => {
-    const [v, setV] = useState<undefined | any >([])
+const FormInsecto = () => {
+   /*  const [v, setV] = useState<undefined | any >([])
     let hello = Array.from(v).map((file:any) => file.name )
-    console.log("Hello: ", hello)
+    console.log("Hello: ", hello) */
 
     const {register, handleSubmit, formState:{errors}} = useForm<IFormInput>()
     /* Supuestamente el async/await no es necesario si uso then */
@@ -56,17 +56,20 @@ const FormInsecto = (props:any) => {
                     </div>
                     <div className="input-box-file">
                         <span className="details">Imagen</span> 
-                        <label htmlFor="file-upload" className="custom-file-upload">
+                         <label htmlFor="file-upload" className="custom-file-upload">
+                            <FaUpload/> Subir Imagen
+                         </label>
+                       {/*  <label htmlFor="file-upload" className="custom-file-upload">
                           <FaUpload /> Subir Imagen 
                           <p style={{color:"darkturquoise" , fontWeight: 'bold'}}>{hello[0]?.toUpperCase()}</p>
-                        </label>
+                        </label> */}
                         <input 
                             {...register("image",{required:true} )} 
                             id="file-upload" 
                             type="file" 
                             name="image"  
                             style={{display:"none" }}
-                            onChange={(e:any)=>{setV(e.target.files)}}
+                            /* onChange={(e:any)=>{setV(e.target.files)}} */
                         />
                         {/* <input 
                             {...register("image",{required:true} )} 
