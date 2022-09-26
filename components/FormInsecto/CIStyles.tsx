@@ -72,9 +72,11 @@ form .user-details .input-box{
 .user-details .input-box-file .custom-file-upload {
     border: 1px solid #13b220;
     display: inline-block;
-    padding: 6px 12px;
+    padding: 6px 10px;
     cursor: pointer;
     margin-right: 100px;
+    position: relative;
+    background-color: #fff;
 }
 
 form .gender-details .gender-title{

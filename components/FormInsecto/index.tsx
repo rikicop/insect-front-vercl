@@ -10,15 +10,19 @@ interface IFormInput{
 
 }
 
-interface Props{
+/* interface Props{
     muestra: Muestra;
-}
+} */
 
 const FormInsecto = () => {
-   /*  const [v, setV] = useState<undefined | any >([])
-    let hello = Array.from(v).map((file:any) => file.name )
-    console.log("Hello: ", hello) */
+   /*  const [v, setV] = useState< any | undefined  >([])
+    let imagen = Array.from(v).map((file:any) => file.name )
+    if( imagen.length > 0){
+        console.log("Imagen: ", imagen)
+    }   */
+    
 
+ 
     const {register, handleSubmit, formState:{errors}} = useForm<IFormInput>()
     /* Supuestamente el async/await no es necesario si uso then */
     /* Verifica cuando termines */
@@ -56,32 +60,17 @@ const FormInsecto = () => {
                     </div>
                     <div className="input-box-file">
                         <span className="details">Imagen</span> 
-                         <label htmlFor="file-upload" className="custom-file-upload">
-                            <FaUpload/> Subir Imagen
+                         <label htmlFor="file-upload" className="custom-file-upload" style={{display:"inline-flex"}}>
+                            <FaUpload/> Subir Imagen 
+                             {/* <h4 style={{ color: "darkturquoise", fontWeight: 'bold' }}>{imagen[0]?.toUpperCase()}</h4>  */}
                          </label>
-                       {/*  <label htmlFor="file-upload" className="custom-file-upload">
-                          <FaUpload /> Subir Imagen 
-                          <p style={{color:"darkturquoise" , fontWeight: 'bold'}}>{hello[0]?.toUpperCase()}</p>
-                        </label> */}
-                        <input 
-                            {...register("image",{required:true} )} 
-                            id="file-upload" 
-                            type="file" 
-                            name="image"  
-                            style={{display:"none" }}
-                            /* onChange={(e:any)=>{setV(e.target.files)}} */
-                        />
-                        {/* <input 
-                            {...register("image",{required:true} )} 
-                            type="text" 
-                            placeholder='Imagen' 
-                            required
-                        /> */}
+                         <div style={{ marginTop:"-25px" , color: "black"}}>
+                            {/* 25/9/22 Puedes colocar color en white para que no se vea la letra */}
+                            <input id="file-upload" type="file" {...register("image", {required:true})}  /* onChange={(e:any) => setV(e.target.files)} */ />
+                         </div>
+                            
+                            
                     </div>
-                   {/*  <div className="input-box">
-                        <span className="details">Coordenadas</span>
-                        <input type="text" placeholder='Coordenadas' required/>
-                    </div>           */}   
                 </div>
                 <div className="button">
                     <input type="submit" name="" value="Register" />
