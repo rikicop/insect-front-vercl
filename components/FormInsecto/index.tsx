@@ -10,7 +10,6 @@ interface IFormInput{
     image : string | any;
 
 }
-
 const FormInsecto = () => {
     //geolocation total
     const [location, setLocation] = useState({latitude: 0, longitude: 0})
@@ -23,8 +22,7 @@ const FormInsecto = () => {
         setLocation({latitude: position.coords.latitude, longitude: position.coords.longitude})
     });
     }, [])
-
-    
+  
     const {register, handleSubmit, formState:{errors}} = useForm<IFormInput>()
     const onSubmit: SubmitHandler<IFormInput> = async(data) => { 
        
@@ -46,11 +44,7 @@ const FormInsecto = () => {
                 setIsSubmit(false)
             });
             //clear inputs
-
      }
-
- 
- 
   return (
     <Body>
         <div className='container'>
@@ -104,7 +98,7 @@ const FormInsecto = () => {
                     )}
                 </div>
             </form>
-            {isSubmit && <div>Formulario Enviado</div>}
+            {isSubmit ? <div className='success'>Muestra Registrada Correctamente</div> : <div>No</div>}
         </div>
     </Body>
   )
