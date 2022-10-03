@@ -28,7 +28,7 @@ const FormInsecto = () => {
        
        const formData = new FormData()
        formData.append('name', data.name)
-       formData.append('coords', String(location))
+       formData.append('coords', String(location.latitude) + ',' + String(location.longitude))
        formData.append('image', data.image[0]);
         await fetch('https://insectos-api-vercel.vercel.app/insect',{
         method: 'POST',
