@@ -14,13 +14,13 @@ interface IFormInput{
 const FormInsecto = () => {
     const [lat, setLat] = React.useState(0);
     const [lon, setLon] = React.useState(0);
-    const [submited, setSubmited] = React.useState(false);
+    //const [submited, setSubmited] = React.useState(false);
     useEffect(() => {
     navigator.geolocation.getCurrentPosition(function(position) {
             setLat(position.coords.latitude);
             setLon(position.coords.longitude);
           });
-    }, []); 
+    }, []);
     
     const {register, handleSubmit, formState:{errors}} = useForm<IFormInput>()
  
@@ -35,12 +35,12 @@ const FormInsecto = () => {
         body: formData,
        }) .then((response) => response.json())
             .then((result) => {
-                console.log('Exitoso:', result);
-                setSubmited(true);
+                console.log('Exitoso:', result.message);
+                //setSubmited(true);
             })
             .catch((error) => {
                 console.error('Error:', error);
-                setSubmited(false);
+                //setSubmited(false);
             });
      }
   
@@ -50,7 +50,6 @@ const FormInsecto = () => {
             <div className='title'>Registro de Muestra</div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="user-details">
-
                     <div className="input-box">
                         <span className="details">Nombre</span>
                         <input {...register("name",{required:true} )} type="text" placeholder='Nombre'/>
@@ -71,9 +70,7 @@ const FormInsecto = () => {
                          </label>
                          <div style={{ marginTop:"-25px" , color: "black"}}>
                             <input id="file-upload" type="file" {...register("image", {required:true})}  /* onChange={(e:any) => setV(e.target.files)} */ />
-                         </div>
-                            
-                            
+                         </div>                 
                     </div>
                 </div>
                 <div className="button">
@@ -93,15 +90,6 @@ const FormInsecto = () => {
                     )}
                 </div>
             </form>
-            {submited ? (
-                <div>
-                    <h1>Registro Exitoso</h1>
-                </div>
-            ) : (
-                <div>
-                    <h1>Registro Fallido</h1>
-                </div>
-            )}
         </div>
     </Body>
   )
