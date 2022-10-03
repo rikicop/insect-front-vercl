@@ -12,18 +12,18 @@ interface IFormInput{
 }
 
 const FormInsecto = () => {
-    const [lat, setLat] = React.useState(0);
-    const [lon, setLon] = React.useState(0);
-    //const [submited, setSubmited] = React.useState(false);
-    useEffect(() => {
+    //geolocation total
+    const [location, setLocation] = useState({latitude: 0, longitude: 0})
+    useEffect(()=> {
     navigator.geolocation.getCurrentPosition(function(position) {
-            setLat(position.coords.latitude);
-            setLon(position.coords.longitude);
-          });
-    }, []);
+        console.log("Latitude is :", position.coords.latitude);
+        console.log("Longitude is :", position.coords.longitude);
+        setLocation({latitude: position.coords.latitude, longitude: position.coords.longitude})
+    });
+    }, [])
+
     
     const {register, handleSubmit, formState:{errors}} = useForm<IFormInput>()
- 
     const onSubmit: SubmitHandler<IFormInput> = async(data) => { 
        
        const formData = new FormData()
@@ -35,7 +35,8 @@ const FormInsecto = () => {
         body: formData,
        }) .then((response) => response.json())
             .then((result) => {
-                console.log('Exitoso:', result.message);
+                console.log('Success:', result);
+                alert(`${data.name} registrado correctamente`);
                 //setSubmited(true);
             })
             .catch((error) => {
@@ -43,7 +44,9 @@ const FormInsecto = () => {
                 //setSubmited(false);
             });
      }
-  
+
+ 
+ 
   return (
     <Body>
         <div className='container'>
@@ -57,10 +60,7 @@ const FormInsecto = () => {
                     <div className="input-box">
                         <span className="details">Coordenadas</span>
                         <input 
-                            {...register("coords",{required:true} )} 
-                            type="text" 
-                            style={{ fontSize: '11px', fontWeight: 'bold' }}
-                            value={` ${lat}  ${lon}`}
+                            {...register("coords",{required:true} )}    
                         />
                     </div>
                     <div className="input-box-file">
@@ -69,7 +69,7 @@ const FormInsecto = () => {
                             <FaUpload/> Subir Imagen 
                          </label>
                          <div style={{ marginTop:"-25px" , color: "black"}}>
-                            <input id="file-upload" type="file" {...register("image", {required:true})}  /* onChange={(e:any) => setV(e.target.files)} */ />
+                            <input id="file-upload" type="file" {...register("image", {required:true})} />
                          </div>                 
                     </div>
                 </div>
