@@ -36,6 +36,7 @@ const FormInsecto = () => {
        }) .then((response) => response.json())
             .then((result) => {
                 console.log('Exitoso:', result);
+                alert('Muestra registrada con exito!')
                 setSubmited(true);
             })
             .catch((error) => {
@@ -43,9 +44,7 @@ const FormInsecto = () => {
                 setSubmited(false);
             });
      }
-     if(submited){
-       alert('Muestra registrada con exito')
-     }
+  
   return (
     <Body>
         <div className='container'>
