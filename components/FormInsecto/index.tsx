@@ -36,7 +36,6 @@ const FormInsecto = () => {
        }) .then((response) => response.json())
             .then((result) => {
                 console.log('Exitoso:', result);
-                alert('Muestra registrada con exito!')
                 setSubmited(true);
             })
             .catch((error) => {
@@ -94,6 +93,15 @@ const FormInsecto = () => {
                     )}
                 </div>
             </form>
+            {submited ? (
+                <div>
+                    <h1>Registro Exitoso</h1>
+                </div>
+            ) : (
+                <div>
+                    <h1>Registro Fallido</h1>
+                </div>
+            )}
         </div>
     </Body>
   )
