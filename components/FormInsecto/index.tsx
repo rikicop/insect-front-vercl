@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Body } from './CIStyles'
 import {useForm, SubmitHandler} from 'react-hook-form'
-import { Muestra } from '../../typings'
+//import { Muestra } from '../../typings'
 import {FaUpload} from 'react-icons/fa'
 
 interface IFormInput{
@@ -11,22 +11,11 @@ interface IFormInput{
 
 }
 
-/* interface Props{
-    muestra: Muestra;
-} */
 
 const FormInsecto = () => {
-   /*  const [v, setV] = useState< any | undefined  >([])
-    let imagen = Array.from(v).map((file:any) => file.name )
-    if( imagen.length > 0){
-        console.log("Imagen: ", imagen)
-    }   */
-    
-
  
     const {register, handleSubmit, formState:{errors}} = useForm<IFormInput>()
-    /* Supuestamente el async/await no es necesario si uso then */
-    /* Verifica cuando termines */
+ 
     const onSubmit: SubmitHandler<IFormInput> = async(data) => { 
        
        const formData = new FormData()
@@ -38,7 +27,7 @@ const FormInsecto = () => {
         body: formData,
        }) .then((response) => response.json())
             .then((result) => {
-                console.log('Success:', result);
+                console.log('Exitoso:', result);
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -51,11 +40,6 @@ const FormInsecto = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="user-details">
 
-                {/*     <input {...register("_id")}
-                        type="hidden"
-                        name="_id"
-                       
-                    /> */}
                     <div className="input-box">
                         <span className="details">Nombre</span>
                         <input {...register("name",{required:true} )} type="text" placeholder='Nombre'/>
@@ -65,13 +49,11 @@ const FormInsecto = () => {
                         <input {...register("coords",{required:true} )} type="text" placeholder='Coordenadas'/>
                     </div>
                     <div className="input-box-file">
-                        <span className="details">Imagen</span> 
+                        <span className="details">Foto</span> 
                          <label htmlFor="file-upload" className="custom-file-upload" style={{display:"inline-flex"}}>
                             <FaUpload/> Subir Imagen 
-                             {/* <h4 style={{ color: "darkturquoise", fontWeight: 'bold' }}>{imagen[0]?.toUpperCase()}</h4>  */}
                          </label>
                          <div style={{ marginTop:"-25px" , color: "black"}}>
-                            {/* 25/9/22 Puedes colocar color en white para que no se vea la letra */}
                             <input id="file-upload" type="file" {...register("image", {required:true})}  /* onChange={(e:any) => setV(e.target.files)} */ />
                          </div>
                             
