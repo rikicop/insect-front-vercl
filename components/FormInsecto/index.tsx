@@ -14,6 +14,8 @@ interface IFormInput{
 const FormInsecto = () => {
     //geolocation total
     const [location, setLocation] = useState({latitude: 0, longitude: 0})
+    //is submit
+    const [isSubmit, setIsSubmit] = useState(false)
     useEffect(()=> {
     navigator.geolocation.getCurrentPosition(function(position) {
         console.log("Latitude is :", position.coords.latitude);
@@ -36,13 +38,15 @@ const FormInsecto = () => {
        }) .then((response) => response.json())
             .then((result) => {
                 console.log('Success:', result);
-                alert(`${data.name} registrado correctamente`);
-                //setSubmited(true);
+                //alert(`${data.name} registrado correctamente`);
+                setIsSubmit(true)
             })
             .catch((error) => {
                 console.error('Error:', error);
-                //setSubmited(false);
+                setIsSubmit(false)
             });
+            //clear inputs
+
      }
 
  
@@ -100,6 +104,7 @@ const FormInsecto = () => {
                     )}
                 </div>
             </form>
+            {isSubmit && <div>Formulario Enviado</div>}
         </div>
     </Body>
   )
