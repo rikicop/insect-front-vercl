@@ -59,9 +59,10 @@ const FormInsecto = () => {
                     </div>
                     <div className="input-box">
                         <span className="details">Coordenadas</span>
-                        <input 
+                        {location.latitude !== 0 && location.longitude !== 0 ? <input {...register("coords",{required:true} )} type="text" placeholder='Coordenadas' value={`${location.latitude}, ${location.longitude}`}/> : <input {...register("coords",{required:true} )} type="text" placeholder='Coordenadas'/>}
+                        {/* <input 
                             {...register("coords",{required:true} )}    
-                        />
+                        /> */}
                     </div>
                     <div className="input-box-file">
                         <span className="details">Foto</span> 
