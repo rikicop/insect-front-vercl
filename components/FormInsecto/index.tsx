@@ -6,6 +6,7 @@ import {FaUpload} from 'react-icons/fa'
 
 interface IFormInput{
     name: string;
+    coords: string;
     image : string | any;
 
 }
@@ -30,6 +31,7 @@ const FormInsecto = () => {
        
        const formData = new FormData()
        formData.append('name', data.name)
+       formData.append('coords', data.coords)
        formData.append('image', data.image[0]);
         await fetch('https://insectos-api-vercel.vercel.app/insect',{
         method: 'POST',
@@ -58,6 +60,10 @@ const FormInsecto = () => {
                         <span className="details">Nombre</span>
                         <input {...register("name",{required:true} )} type="text" placeholder='Nombre'/>
                     </div>
+                    <div className="input-box">
+                        <span className="details">Coordenadas</span>
+                        <input {...register("coords",{required:true} )} type="text" placeholder='Coordenadas'/>
+                    </div>
                     <div className="input-box-file">
                         <span className="details">Imagen</span> 
                          <label htmlFor="file-upload" className="custom-file-upload" style={{display:"inline-flex"}}>
@@ -78,6 +84,9 @@ const FormInsecto = () => {
                 <div>
                     {errors.name && (
                     <span>El Campo Nombre es requerido</span>
+                    )}
+                    {errors.coords && (
+                    <span>El Campo Coordenadas es requerido</span>
                     )}
                     {errors.image && (
                     <span>
