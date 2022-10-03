@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Body } from './CIStyles'
 import {useForm, SubmitHandler} from 'react-hook-form'
 //import { Muestra } from '../../typings'
@@ -11,9 +11,16 @@ interface IFormInput{
 
 }
 
-
 const FormInsecto = () => {
- 
+    const [lat, setLat] = React.useState(0);
+    const [lon, setLon] = React.useState(0);
+    useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function(position) {
+            setLat(position.coords.latitude);
+            setLon(position.coords.longitude);
+          });
+    }, []); 
+    
     const {register, handleSubmit, formState:{errors}} = useForm<IFormInput>()
  
     const onSubmit: SubmitHandler<IFormInput> = async(data) => { 
@@ -46,7 +53,12 @@ const FormInsecto = () => {
                     </div>
                     <div className="input-box">
                         <span className="details">Coordenadas</span>
-                        <input {...register("coords",{required:true} )} type="text" placeholder='Coordenadas'/>
+                        <input 
+                            {...register("coords",{required:true} )} 
+                            type="text" 
+                            style={{ fontSize: '11px', fontWeight: 'bold' }}
+                            value={` ${lat}  ${lon}`}
+                        />
                     </div>
                     <div className="input-box-file">
                         <span className="details">Foto</span> 
