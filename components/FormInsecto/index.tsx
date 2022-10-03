@@ -28,7 +28,7 @@ const FormInsecto = () => {
        
        const formData = new FormData()
        formData.append('name', data.name)
-       formData.append('coords', data.coords)
+       formData.append('coords', String(location))
        formData.append('image', data.image[0]);
         await fetch('https://insectos-api-vercel.vercel.app/insect',{
         method: 'POST',
@@ -59,10 +59,19 @@ const FormInsecto = () => {
                     </div>
                     <div className="input-box">
                         <span className="details">Coordenadas</span>
-                        {location.latitude !== 0 && location.longitude !== 0 ? <input {...register("coords",{required:true} )} type="text" placeholder='Coordenadas' value={`${location.latitude}, ${location.longitude}`}/> : <input {...register("coords",{required:true} )} type="text" placeholder='Coordenadas'/>}
-                        {/* <input 
-                            {...register("coords",{required:true} )}    
-                        /> */}
+                        {location.latitude !== 0 && location.longitude !== 0 ? 
+                            <input 
+                                {...register("coords",{required:false} )} 
+                                type="text" placeholder='Coordenadas' 
+                                value={`${location.latitude}, ${location.longitude}`}
+                                
+                            /> : 
+                            <input 
+                                {...register("coords",{required:false} )} 
+                                type="text" placeholder='Coordenadas'
+                            />
+                        }
+                        
                     </div>
                     <div className="input-box-file">
                         <span className="details">Foto</span> 
