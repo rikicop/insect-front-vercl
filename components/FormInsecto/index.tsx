@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Body } from './CIStyles'
-import {useForm, SubmitHandler} from 'react-hook-form'
+import {useForm, SubmitHandler, FormState} from 'react-hook-form'
 //import { Muestra } from '../../typings'
 import {FaUpload} from 'react-icons/fa'
 
@@ -11,19 +11,20 @@ interface IFormInput{
 
 }
 const FormInsecto = () => {
-    //geolocation total
     const [location, setLocation] = useState({latitude: 0, longitude: 0})
-    //is submit
     const [isSubmit, setIsSubmit] = useState(false)
+    //is submitting 
+    
     useEffect(()=> {
     navigator.geolocation.getCurrentPosition(function(position) {
         console.log("Latitude is :", position.coords.latitude);
         console.log("Longitude is :", position.coords.longitude);
         setLocation({latitude: position.coords.latitude, longitude: position.coords.longitude})
     });
+
     }, [])
   
-    const {register, handleSubmit, formState:{errors}} = useForm<IFormInput>()
+    const {register, handleSubmit, formState:{errors, isSubmitting}} = useForm<IFormInput>()
     const onSubmit: SubmitHandler<IFormInput> = async(data) => { 
        
        const formData = new FormData()
@@ -36,8 +37,8 @@ const FormInsecto = () => {
        }) .then((response) => response.json())
             .then((result) => {
                 console.log('Success:', result);
-                //alert(`${data.name} registrado correctamente`);
                 setIsSubmit(true)
+
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -98,7 +99,8 @@ const FormInsecto = () => {
                     )}
                 </div>
             </form>
-            {isSubmit ? <div className='success'>Muestra Registrada Correctamente</div> : <div>No</div>}
+            {isSubmitting && <div><h4 style={{color:'green'}}>Enviando...</h4></div>}
+            {isSubmit ? <div className='success'>Muestra Registrada Correctamente</div> : null}
         </div>
     </Body>
   )
