@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Body } from './CIStyles'
 import {useForm, SubmitHandler, FormState} from 'react-hook-form'
-//import { Muestra } from '../../typings'
 import {FaUpload} from 'react-icons/fa'
 
 interface IFormInput{
