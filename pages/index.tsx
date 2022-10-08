@@ -1,4 +1,5 @@
-import type { NextPage } from 'next'
+import Card from '../components/Card'
+import { CardsWrapper } from '../components/Card/CardStyles'
 import { Muestra } from '../typings'
 
 interface Props {
@@ -7,14 +8,11 @@ interface Props {
 
 const Home = ({posts}: Props) => {
   return (
-    <div>
-      {posts.map((post) => (
-        <div key={post._id}>
-          <h1>{post.name}</h1>
-          <p>{post.profile_img}</p>
-        </div>
-      ))}
-    </div>
+    <CardsWrapper>
+    {posts.map((post) => (
+      <Card {...post} />
+      ))} 
+    </CardsWrapper>
   )
 }
 
