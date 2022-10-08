@@ -10,8 +10,8 @@ const Home = ({posts}: Props) => {
   return (
     <CardsWrapper>
       <h1>Hola</h1>
-    {posts.map((post) => (
-      <Card {...post} />
+    {posts.map((post,key) => (
+      <Card {...post} key={key}/>
       ))} 
     </CardsWrapper>
   )
