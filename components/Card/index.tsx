@@ -15,6 +15,8 @@ const Card = ( data:Muestra ) => {
             <Image
               src={data.profile_img} 
               layout='fill'
+              placeholder='blur'
+              blurDataURL="../../assets/loading-img.png"
               alt="grasshopper" 
               objectFit='cover'
             />  
