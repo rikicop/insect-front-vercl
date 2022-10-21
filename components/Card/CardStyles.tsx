@@ -4,6 +4,7 @@ export const CardsWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
     grid-gap: 2rem;
+    padding-top: 4rem; ;
     justify-content: center;
 `;
 
@@ -35,6 +36,22 @@ transition: transform 0.2s ease-in-out;
     .card_description{
         padding: 0 1rem 1rem 1rem;
         font-size: 1rem;
+    }
+    .card_button{
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        text-align: center;
+        background-color: #000;
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        &:hover{
+            background-color: #089a0b;
+            color: #f0ebeb;
+        }
     }
 }
 `;
