@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import { CardContainer, CardsWrapper } from './CardStyles'
+import { CardContainer } from './CardStyles'
 import { Muestra } from '../../typings'
 import Link from 'next/link'
 

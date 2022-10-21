@@ -7,11 +7,32 @@ interface Props {
   posts: [Muestra]
 }
 
+// json object
+/* const data = [
+  { name: 'John', age: 30, city: 'New York' },
+  { name: 'Peter', age: 40, city: 'Boston' },
+  { name: 'Clark', age: 25, city: 'Los Angeles' },
+] */
+
 const Home = ({posts}: Props) => {
-  console.log(posts)
+  //console.log(posts)
   return (
     <>
-    <CsvDownload data={posts} filename="muestra.csv" />
+    <CsvDownload 
+      data={posts}
+      filename="muestra.csv"  
+      style={{
+          margin: '1rem', 
+          background: '#11afe3', 
+          padding: '1rem', 
+          borderRadius: '5px', 
+          fontSize: '1.5rem', 
+          color: '#fff', 
+          textDecoration: 'none'
+      }}
+    >
+      Descargar CSV
+    </CsvDownload>
     <CardsWrapper>
     {posts.map((post,key) => (
       <Card {...post} key={key}/>
