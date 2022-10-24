@@ -47,6 +47,7 @@ form .user-details .input-box .link{
     padding: 0.5rem;
     text-align: center;
     font-weight: bolder;
+    margin-top: 15px;
 }
 
 .user-details .input-box .details{

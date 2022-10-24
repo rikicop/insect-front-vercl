@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Body } from './CIStyles'
 import {useForm, SubmitHandler} from 'react-hook-form'
 import {FaUpload} from 'react-icons/fa'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 interface IFormInput{
@@ -14,10 +13,7 @@ interface IFormInput{
 const FormInsecto = () => {
     const [location, setLocation] = useState({latitude: 0, longitude: 0})
     const [isSubmit, setIsSubmit] = useState(false)
- 
-    const router = useRouter()
-
-    
+   
     useEffect(()=> {
     navigator.geolocation.getCurrentPosition(function(position) {
         console.log("Latitude is :", position.coords.latitude);
@@ -91,7 +87,11 @@ const FormInsecto = () => {
                             </Link>
                         </div>
                     </div>
+                   
                 </div>
+                 <div className="button">
+                        <input type="submit" name="" value="Register" />
+                    </div>
                
                 <div>
                     {errors.name && (
