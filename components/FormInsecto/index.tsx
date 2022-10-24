@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Body } from './CIStyles'
-import {useForm, SubmitHandler, FormState} from 'react-hook-form'
+import {useForm, SubmitHandler} from 'react-hook-form'
 import {FaUpload} from 'react-icons/fa'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 interface IFormInput{
     name: string;
@@ -12,7 +14,9 @@ interface IFormInput{
 const FormInsecto = () => {
     const [location, setLocation] = useState({latitude: 0, longitude: 0})
     const [isSubmit, setIsSubmit] = useState(false)
-    //is submitting 
+ 
+    const router = useRouter()
+
     
     useEffect(()=> {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -80,10 +84,15 @@ const FormInsecto = () => {
                             <input id="file-upload" type="file" {...register("image", {required:true})} />
                          </div>                 
                     </div>
+                    <div className="input-box" style={{width:"120px", marginRight: "15%"}}>    
+                        <div className='link' style={{  border:"solid 1px" , borderRadius:"10px"}} >
+                            <Link href="/"> 
+                                <a>Ver Insectos</a>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
-                <div className="button">
-                    <input type="submit" name="" value="Register" />
-                </div>
+               
                 <div>
                     {errors.name && (
                     <span>El Campo Nombre es requerido</span>

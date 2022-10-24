@@ -40,6 +40,15 @@ form .user-details .input-box{
     width: calc(100% / 2 - 20px)
 }
 
+form .user-details .input-box .link{
+    color: #009efd;
+    border:"solid 1px";
+    border-radius:"10px";
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: bolder;
+}
+
 .user-details .input-box .details{
     display: block;
     font-weight: 500;
