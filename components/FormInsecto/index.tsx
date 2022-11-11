@@ -88,9 +88,9 @@ const FormInsecto = () => {
                         </div>
                     </div> : null}  
                 </div>
-                 <div className="button">
+                <div className="button">
                         <input type="submit" name="" value="Register" />
-                    </div>
+                </div>
                
                 <div>
                     {errors.name && (
