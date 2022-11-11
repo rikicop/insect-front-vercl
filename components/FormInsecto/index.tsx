@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Body } from './CIStyles'
+import { Body,Button } from './CIStyles'
 import {useForm, SubmitHandler} from 'react-hook-form'
 import {FaUpload} from 'react-icons/fa'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 interface IFormInput{
     name: string;
@@ -11,6 +12,7 @@ interface IFormInput{
 
 }
 const FormInsecto = () => {
+    const router = useRouter()
     const [location, setLocation] = useState({latitude: 0, longitude: 0})
     const [isSubmit, setIsSubmit] = useState(false)
    
@@ -48,7 +50,7 @@ const FormInsecto = () => {
   return (
     <Body>
         <div className='container'>
-            <div className='title'>Registro de Muestra</div>
+            <div className='title'>Registro de Muestra <Button onClick={() => router.push('/')}>Muestras</Button></div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="user-details">
                     <div className="input-box">

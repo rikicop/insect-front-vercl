@@ -2,6 +2,9 @@ import Card from '../components/Card'
 import { CardsWrapper } from '../components/Card/CardStyles'
 import { Muestra } from '../typings'
 import CsvDownload from 'react-json-to-csv'
+import { useRouter } from 'next/router'
+import styled from 'styled-components'
+
 
 interface Props {
   posts: [Muestra]
@@ -14,7 +17,27 @@ interface Props {
   { name: 'Clark', age: 25, city: 'Los Angeles' },
 ] */
 
+const FormLinkButton = styled.div`
+  display: flex;
+  justify-content: center;
+  button {
+    background-color: #29c94e;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+`
+
 const Home = ({posts}: Props) => {
+  const router = useRouter()
   //console.log(posts)
   return (
     <>
@@ -23,16 +46,20 @@ const Home = ({posts}: Props) => {
       filename="muestra.csv"  
       style={{
           margin: '1rem', 
-          background: '#11afe3', 
+          background: '#29c94e', 
           padding: '1rem', 
           borderRadius: '5px', 
           fontSize: '1.5rem', 
-          color: '#fff', 
+          color: '#000', 
+          border: '1px solid #000',
           textDecoration: 'none'
       }}
     >
       Descargar CSV
     </CsvDownload>
+    <FormLinkButton>
+      <button onClick={() => router.push('/crearinsecto')}>Crear Insecto</button>
+    </FormLinkButton>
     <CardsWrapper>
     {posts.map((post,key) => (
       <Card {...post} key={key}/>

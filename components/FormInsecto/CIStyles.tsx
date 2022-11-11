@@ -142,3 +142,20 @@ form .button input{
 }
 
 `
+export const Button = styled.button`
+    background-color: #29c94e;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    &:hover{
+        background-color: #31ee5d;
+        color: white;
+    }
+`
